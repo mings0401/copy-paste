@@ -1,6 +1,7 @@
 package com.sunming.copypaste;
 
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,6 +19,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ms = new MySQLiteHandler(this);
         setCurrentMyTextList();
+
+
     }
 
     /**
@@ -35,5 +38,14 @@ public class MainActivity extends Activity {
         }
 
 
+    }
+
+    /**
+     * clipboard에 글자 복사하는 함수
+     * @param contents : 복사할 내용
+     */
+    public void copyClipboard(String contents){
+        final ClipboardManager clipboardManager =  (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        clipboardManager.setText(contents);
     }
 }
