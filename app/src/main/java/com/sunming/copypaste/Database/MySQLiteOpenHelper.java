@@ -1,4 +1,4 @@
-package com.sunming.copypaste;
+package com.sunming.copypaste.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

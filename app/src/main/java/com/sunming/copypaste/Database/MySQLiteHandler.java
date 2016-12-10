@@ -1,15 +1,13 @@
-package com.sunming.copypaste;
+package com.sunming.copypaste.Database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
-import java.util.ArrayList;
+import com.sunming.copypaste.Util.MyText;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by minkyujo on 2016. 12. 10..
@@ -51,11 +49,21 @@ public class MySQLiteHandler {
 
         while(c.moveToNext()) {
             MyText myText = new MyText(c.getInt(0), c.getString(1), c.getString(2));
-            Log.e("matthew",""+myText.getId());
 
             map.put(c.getInt(0), myText);
         }
         return map;
     }
+
+    /**
+     * _id값으로 db에서 삭제하는 함수
+     * @param _id : _id값
+     */
+    public void delete(int _id) {
+        // 입력한 항목과 일치하는 행 삭제
+        db.execSQL("DELETE FROM MYTEXT WHERE _id='" + _id + "';");
+    }
+
+
 }
 
