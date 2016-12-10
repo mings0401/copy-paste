@@ -44,12 +44,18 @@ public class MySQLiteHandler {
     /**
      * DB에서 목록 가져오기
      */
-    public void getMyText() {
+    public HashMap getMyText() {
         Cursor c = db.rawQuery("select * from myText;", null);
         int _id = 0; String title="", contents="";
-        while(c.moveToNext()) {
+        HashMap<Integer, MyText> map = new HashMap<Integer, MyText>();
 
+        while(c.moveToNext()) {
+            MyText myText = new MyText(c.getInt(0), c.getString(1), c.getString(2));
+            Log.e("matthew",""+myText.getId());
+
+            map.put(c.getInt(0), myText);
         }
+        return map;
     }
 }
 

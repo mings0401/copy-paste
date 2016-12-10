@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.HashMap;
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -11,8 +13,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         MySQLiteHandler ms = new MySQLiteHandler(this);
-        Log.e("matthew","as");
-        ms.insertMyText("123","456");
-        ms.getMyText();
+        HashMap map = ms.getMyText();
+        MyText myText = (MyText) map.get(1);
+        Log.d("matthew main", myText.getContents());
+
     }
 }
