@@ -19,7 +19,7 @@
         android:layout_height="50dp">
 
         <EditText
-            android:text="Search"
+            android:hint="Search"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView" />
