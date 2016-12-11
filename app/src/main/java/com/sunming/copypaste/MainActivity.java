@@ -1,7 +1,6 @@
 package com.sunming.copypaste;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.util.Log;
