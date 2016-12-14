@@ -3,19 +3,19 @@ package com.sunming.copypaste.ListView;
 /**
  * Created by minkyujo on 2016. 12. 11..
  */
-import android.annotation.SuppressLint;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.sunming.copypaste.MainActivity;
 import com.sunming.copypaste.R;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<ListViewItem> {
@@ -39,7 +39,7 @@ public class ListViewAdapter extends ArrayAdapter<ListViewItem> {
         }
 
         // 현재 position 의 내용을 View 로 작성하여 리턴
-        ListViewItem item = (ListViewItem) items.get(position);
+        final ListViewItem item = (ListViewItem) items.get(position);
 
         if (item != null) {
 
@@ -48,6 +48,16 @@ public class ListViewAdapter extends ArrayAdapter<ListViewItem> {
             titleText.setText(item.getTitle());
 
         }
+
+        Button button = (Button)view.findViewById(R.id.listViewBtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)MainActivity.mContext).copyClipboard(item.getContents());
+                Log.e("title",item.getContents());
+            }
+        });
+
         return view;
     }
 

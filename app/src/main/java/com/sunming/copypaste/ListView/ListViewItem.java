@@ -6,9 +6,11 @@ package com.sunming.copypaste.ListView;
 
 public class ListViewItem {
     private String title ;
+    private String contents;
 
-    public ListViewItem(String title){
+    public ListViewItem(String title, String contents){
         this.title = title;
+        this.contents = contents;
     }
 
     public void setTitle(String title) {
@@ -17,5 +19,13 @@ public class ListViewItem {
 
     public String getTitle() {
         return this.title ;
+    }
+
+    public void setContents(String contents){
+        this.contents = contents;
+    }
+
+    public String getContents(){
+        return this.contents;
     }
 }

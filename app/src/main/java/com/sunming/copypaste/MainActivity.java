@@ -2,8 +2,8 @@ package com.sunming.copypaste;
 
 import android.app.Activity;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.sunming.copypaste.Database.MySQLiteHandler;
@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends Activity {
+    public static Context mContext;
     MySQLiteHandler ms;
     private List<ListViewItem> myTextItem;
     private ListViewAdapter myTextAdapter;
@@ -29,9 +30,19 @@ public class MainActivity extends Activity {
         ms = new MySQLiteHandler(this);
         myTextListVeiw = (ListView) findViewById(R.id.myCopyList);
 
+        mContext = this;
+
         setCurrentMyTextList();
 
-
+//        myTextListVeiw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                ListView listView = (ListView) parent;
+//                // TODO 아이템 클릭시에 구현할 내용은 여기에.
+//                String item = (String) listView.getItemAtPosition(position);
+//                Toast.makeText(MainActivity.this, "123123", Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     /**
@@ -47,8 +58,9 @@ public class MainActivity extends Activity {
             MyText mytext = (MyText) map.get(key);
             int value = mytext.getId();
             String title = mytext.getTitle();
-            myTextItem.add(new ListViewItem(title));
-            Log.e("matthew123","value : " + value);
+            String contents = mytext.getContents();
+
+            myTextItem.add(new ListViewItem(title, contents));
         }
 
         // 북마크 Adapter 작성
