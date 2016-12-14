@@ -25,6 +25,7 @@ public class AddDialogActivity extends Activity {
         contentsEditTxt = (EditText)findViewById(R.id.contents_editTxt);
 
         findViewById(R.id.saveBtn).setOnClickListener(mClickListener);
+        findViewById(R.id.cancelBtn).setOnClickListener(mClickListener);
 
     }
 
@@ -39,7 +40,11 @@ public class AddDialogActivity extends Activity {
                     ((MainActivity)MainActivity.mContext).setCurrentMyTextList();
                     finish();
                     break;
+                case R.id.cancelBtn:
+                    finish();
+                    break;
             }
         }
     };
+
 }
