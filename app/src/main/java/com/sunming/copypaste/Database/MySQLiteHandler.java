@@ -32,6 +32,10 @@ public class MySQLiteHandler {
        }
    }
 
+    public void updateMyText(int _id, String title, String contents){
+        db.execSQL("UPDATE myText SET title = '"+ title +"', contents = '"+ contents +"' WHERE _id = " + _id);
+    }
+
     /**
      * DB에 네 text집어넣기
      */
