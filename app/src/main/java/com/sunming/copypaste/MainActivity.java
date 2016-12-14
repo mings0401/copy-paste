@@ -3,12 +3,16 @@ package com.sunming.copypaste;
 import android.app.Activity;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.sunming.copypaste.Database.MySQLiteHandler;
 import com.sunming.copypaste.ListView.ListViewAdapter;
 import com.sunming.copypaste.ListView.ListViewItem;
+import com.sunming.copypaste.Util.BackPressCloseHandler;
 import com.sunming.copypaste.Util.MyText;
 
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     public static Context mContext;
+    private BackPressCloseHandler backPressCloseHandler;
     MySQLiteHandler ms;
     private List<ListViewItem> myTextItem;
     private ListViewAdapter myTextAdapter;
@@ -34,15 +39,26 @@ public class MainActivity extends Activity {
 
         setCurrentMyTextList();
 
-//        myTextListVeiw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ListView listView = (ListView) parent;
-//                // TODO 아이템 클릭시에 구현할 내용은 여기에.
-//                String item = (String) listView.getItemAtPosition(position);
-//                Toast.makeText(MainActivity.this, "123123", Toast.LENGTH_LONG).show();
-//            }
-//        });
+        findViewById(R.id.myTextAddBtn).setOnClickListener(mClickListener);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+    }
+
+    Button.OnClickListener mClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.myTextAddBtn:
+                    Intent mainIntent = new Intent(getApplicationContext(), AddDialogActivity.class);
+                    startActivity(mainIntent);
+                    break;
+            }
+        }
+    };
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
     }
 
     /**
