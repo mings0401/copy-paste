@@ -5,10 +5,12 @@ package com.sunming.copypaste.ListView;
  */
 
 public class ListViewItem {
+    private int _id;
     private String title ;
     private String contents;
 
-    public ListViewItem(String title, String contents){
+    public ListViewItem(int _id, String title, String contents){
+        this._id = _id;
         this.title = title;
         this.contents = contents;
     }
@@ -27,5 +29,13 @@ public class ListViewItem {
 
     public String getContents(){
         return this.contents;
+    }
+
+    public void set_id(int _id){
+        this._id = _id;
+    }
+
+    public int get_id(){
+        return this._id;
     }
 }

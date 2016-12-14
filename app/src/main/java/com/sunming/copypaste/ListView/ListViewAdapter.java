@@ -49,12 +49,21 @@ public class ListViewAdapter extends ArrayAdapter<ListViewItem> {
 
         }
 
-        Button button = (Button)view.findViewById(R.id.listViewBtn);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button deleteBtn = (Button)view.findViewById(R.id.deleteListBtn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)MainActivity.mContext).deleteMyText(item.get_id());
+                ((MainActivity)MainActivity.mContext).initListView();
+                ((MainActivity)MainActivity.mContext).setCurrentMyTextList();
+            }
+        });
+
+        Button copyBtn = (Button)view.findViewById(R.id.copyContentsBtn);
+        copyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity)MainActivity.mContext).copyClipboard(item.getContents());
-                Log.e("title",item.getContents());
             }
         });
 

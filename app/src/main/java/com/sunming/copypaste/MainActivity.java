@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity {
     private ListViewAdapter myTextAdapter;
     private ListView myTextListVeiw;
     private AdView mAdView;
+    private EditText searMyTextEditTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
         settingAd(); //광고 셋팅
 
         setCurrentMyTextList(); //리스트뷰 뿌려주기
+
+        searMyTextEditTxt = (EditText)findViewById(R.id.searMyTextEditTxt);
 
         findViewById(R.id.myTextAddBtn).setOnClickListener(mClickListener);
 
@@ -66,6 +70,13 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * list 삭제
+     */
+    public void deleteMyText(int _id){
+        ms.delete(_id);
+    }
+
+    /**
      * 광고 셋팅해주는 함수
      */
     public void settingAd(){
@@ -85,11 +96,11 @@ public class MainActivity extends Activity {
         while ( keys.hasNext() ) {
             int key = keys.next();
             MyText mytext = (MyText) map.get(key);
-            int value = mytext.getId();
+            int _id = mytext.getId();
             String title = mytext.getTitle();
             String contents = mytext.getContents();
 
-            myTextItem.add(new ListViewItem(title, contents));
+            myTextItem.add(new ListViewItem(_id, title, contents));
         }
 
         // 북마크 Adapter 작성
@@ -102,6 +113,7 @@ public class MainActivity extends Activity {
      * ListView 비우기
      */
     public void initListView(){
+        searMyTextEditTxt.setText("");
         myTextListVeiw.setAdapter(null);
     }
 
