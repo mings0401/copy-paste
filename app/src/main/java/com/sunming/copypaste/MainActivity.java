@@ -99,6 +99,13 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * ListView 비우기
+     */
+    public void initListView(){
+        myTextListVeiw.setAdapter(null);
+    }
+
+    /**
      * clipboard에 글자 복사하는 함수
      * @param contents : 복사할 내용
      */
