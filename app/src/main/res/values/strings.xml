@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CopyPaste</string>
+    <string name="main_bottom_banner_ad_unit_id">ca-app-pub-3628076058136751/6339794222</string>
+    <string name="popup_main_bottom_banner_ad_unit_id">ca-app-pub-3628076058136751/3453059829</string>
 </resources>

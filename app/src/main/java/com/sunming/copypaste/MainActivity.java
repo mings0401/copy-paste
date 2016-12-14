@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.sunming.copypaste.Database.MySQLiteHandler;
 import com.sunming.copypaste.ListView.ListViewAdapter;
 import com.sunming.copypaste.ListView.ListViewItem;
@@ -27,7 +29,7 @@ public class MainActivity extends Activity {
     private List<ListViewItem> myTextItem;
     private ListViewAdapter myTextAdapter;
     private ListView myTextListVeiw;
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,9 @@ public class MainActivity extends Activity {
 
         mContext = this;
 
-        setCurrentMyTextList();
+        settingAd(); //광고 셋팅
+
+        setCurrentMyTextList(); //리스트뷰 뿌려주기
 
         findViewById(R.id.myTextAddBtn).setOnClickListener(mClickListener);
 
@@ -59,6 +63,15 @@ public class MainActivity extends Activity {
     public void onBackPressed() {
         //super.onBackPressed();
         backPressCloseHandler.onBackPressed();
+    }
+
+    /**
+     * 광고 셋팅해주는 함수
+     */
+    public void settingAd(){
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView = (AdView) findViewById(R.id.mainAdView);
+        mAdView.loadAd(adRequest);
     }
 
     /**
